@@ -145,7 +145,7 @@ def bootstrap(rows: dict[date, dict[str, Any]]) -> int:
                 }
                 added += 1
     if not added:
-        raise RuntimeError("Unified dataset contained no usable dated features")
+        raise RuntimeError("Repository archive contained no usable dated files")
     return added
 
 
