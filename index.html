@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Динаміка окупованої території України</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1020;--panel:#141b2d;--muted:#94a3b8;--text:#f8fafc;--blue:#60a5fa;--red:#fb7185;--green:#34d399;--grid:#263248}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#0b1020,#101827);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    main{max-width:1040px;margin:auto;padding:24px 14px 48px}h1{font-size:clamp(1.55rem,5vw,2.6rem);line-height:1.08;margin:8px 0}p{color:var(--muted);line-height:1.5}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0}.card,.chart-card{background:rgba(20,27,45,.92);border:1px solid #27334a;border-radius:16px;box-shadow:0 18px 45px #0004}.card{padding:15px}.label{font-size:.78rem;color:var(--muted)}.value{font-size:clamp(1.25rem,4vw,1.9rem);font-weight:750;margin-top:5px}.chart-card{padding:14px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}button{border:1px solid #334155;background:#111827;color:var(--muted);padding:9px 12px;border-radius:999px;font-weight:650}button.active{color:#08111f;background:var(--blue);border-color:var(--blue)}#chart{width:100%;min-height:390px;position:relative}svg{display:block;width:100%;height:auto;overflow:visible}.tip{display:none;position:absolute;z-index:2;pointer-events:none;background:#050914eF;border:1px solid #475569;border-radius:10px;padding:9px 11px;font-size:.82rem;box-shadow:0 8px 28px #0008}.notes{font-size:.86rem;margin-top:18px}.notes a{color:#93c5fd}.positive{color:var(--red)}.negative{color:var(--green)}
+    @media(max-width:640px){main{padding-top:16px}.cards{grid-template-columns:1fr}.card{display:flex;justify-content:space-between;align-items:center}.value{font-size:1.25rem}.chart-card{padding:10px}#chart{min-height:340px}}
+  </style>
+</head>
+<body><main>
+  <p>DeepState · місячні дані</p>
+  <h1>Територія України під російським контролем</h1>
+  <p>Останні 12 місяців. Для кожного місяця використано останнє доступне спостереження.</p>
+  <section class="cards">
+    <div class="card"><div class="label">Останнє значення<br>2026-09-15</div><div class="value">117 119 км²</div></div>
+    <div class="card"><div class="label">Зміна за 30 днів</div><div class="value positive">+158 км²</div></div>
+    <div class="card"><div class="label">Зміна за 12 місяців</div><div class="value positive">+2 284 км²</div></div>
+  </section>
+  <section class="chart-card">
+    <div class="toolbar"><button class="active" data-mode="total">Загальна площа</button><button data-mode="change">Зміна за місяць</button></div>
+    <div id="chart"><div class="tip" id="tip"></div></div>
+  </section>
+  <p class="notes">Джерело: <a href="https://github.com/cyterat/deepstate-map-data">cyterat/deepstate-map-data</a>, похідні дані DeepState. Площа розрахована геодезично на еліпсоїді WGS‑84. Історія джерела починається 08.07.2024; запитані раніші дати наразі відсутні. Оновлено: 2026-09-16.</p>
+</main>
+<script>
+const rows=[{"month":"2025-10","date":"2025-10-31","occupied_km2":115248.128,"monthly_change_km2":254.863},{"month":"2025-11","date":"2025-11-30","occupied_km2":115741.476,"monthly_change_km2":493.348},{"month":"2025-12","date":"2025-12-31","occupied_km2":116203.009,"monthly_change_km2":461.533},{"month":"2026-01","date":"2026-01-31","occupied_km2":116430.62,"monthly_change_km2":227.611},{"month":"2026-02","date":"2026-02-28","occupied_km2":116585.588,"monthly_change_km2":154.968},{"month":"2026-03","date":"2026-03-31","occupied_km2":116743.207,"monthly_change_km2":157.619},{"month":"2026-04","date":"2026-04-30","occupied_km2":116883.044,"monthly_change_km2":139.837},{"month":"2026-05","date":"2026-05-31","occupied_km2":116893.336,"monthly_change_km2":10.292},{"month":"2026-06","date":"2026-06-30","occupied_km2":116977.818,"monthly_change_km2":84.482},{"month":"2026-07","date":"2026-07-31","occupied_km2":117018.028,"monthly_change_km2":40.21},{"month":"2026-08","date":"2026-08-31","occupied_km2":117026.971,"monthly_change_km2":8.943},{"month":"2026-09","date":"2026-09-15","occupied_km2":117119.203,"monthly_change_km2":92.232}];
+const chart=document.getElementById('chart'),tip=document.getElementById('tip');
+const monthFmt=new Intl.DateTimeFormat('uk-UA',{month:'short',year:'2-digit',timeZone:'UTC'});
+const dateFmt=new Intl.DateTimeFormat('uk-UA',{day:'2-digit',month:'long',year:'numeric',timeZone:'UTC'});
+const num=new Intl.NumberFormat('uk-UA',{maximumFractionDigits:0});
+let mode='total';
+function render(){
+  chart.querySelector('svg')?.remove();
+  const W=900,H=410,L=76,R=24,T=25,B=72,plotW=W-L-R,plotH=H-T-B;
+  const values=rows.map(r=>mode==='total'?r.occupied_km2:(r.monthly_change_km2??0));
+  let min=Math.min(...values),max=Math.max(...values); if(mode==='total'){const pad=Math.max((max-min)*.12,40);min-=pad;max+=pad}else{const edge=Math.max(Math.abs(min),Math.abs(max),1)*1.15;min=-edge;max=edge}
+  const x=i=>L+(rows.length===1?plotW/2:i*plotW/(rows.length-1)); const y=v=>T+(max-v)*plotH/(max-min);
+  const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('role','img');
+  for(let i=0;i<5;i++){const v=min+(max-min)*i/4,yy=y(v),line=document.createElementNS(ns,'line');line.setAttribute('x1',L);line.setAttribute('x2',W-R);line.setAttribute('y1',yy);line.setAttribute('y2',yy);line.setAttribute('stroke','#263248');svg.append(line);const label=document.createElementNS(ns,'text');label.setAttribute('x',L-10);label.setAttribute('y',yy+4);label.setAttribute('text-anchor','end');label.setAttribute('fill','#94a3b8');label.setAttribute('font-size','12');label.textContent=num.format(v);svg.append(label)}
+  if(mode==='total'){const path=document.createElementNS(ns,'path');path.setAttribute('d',values.map((v,i)=>`${i?'L':'M'}${x(i)},${y(v)}`).join(' '));path.setAttribute('fill','none');path.setAttribute('stroke','#60a5fa');path.setAttribute('stroke-width','4');path.setAttribute('stroke-linejoin','round');svg.append(path)}
+  rows.forEach((r,i)=>{const xx=x(i),v=values[i];if(mode==='change'){const zero=y(0),bar=document.createElementNS(ns,'rect'),bw=Math.max(10,plotW/rows.length*.55);bar.setAttribute('x',xx-bw/2);bar.setAttribute('y',Math.min(y(v),zero));bar.setAttribute('width',bw);bar.setAttribute('height',Math.max(2,Math.abs(zero-y(v))));bar.setAttribute('rx','4');bar.setAttribute('fill',v>=0?'#fb7185':'#34d399');svg.append(bar)}else{const dot=document.createElementNS(ns,'circle');dot.setAttribute('cx',xx);dot.setAttribute('cy',y(v));dot.setAttribute('r','5');dot.setAttribute('fill','#dbeafe');svg.append(dot)}const hit=document.createElementNS(ns,'rect');hit.setAttribute('x',xx-Math.max(18,plotW/rows.length/2));hit.setAttribute('y',T);hit.setAttribute('width',Math.max(36,plotW/rows.length));hit.setAttribute('height',plotH);hit.setAttribute('fill','transparent');hit.addEventListener('pointerenter',e=>showTip(e,r,v));hit.addEventListener('pointermove',e=>positionTip(e));hit.addEventListener('pointerleave',()=>tip.style.display='none');svg.append(hit);const label=document.createElementNS(ns,'text');label.setAttribute('x',xx);label.setAttribute('y',H-B+25);label.setAttribute('text-anchor','end');label.setAttribute('transform',`rotate(-38 ${xx} ${H-B+25})`);label.setAttribute('fill','#94a3b8');label.setAttribute('font-size','12');label.textContent=monthFmt.format(new Date(r.date+'T00:00:00Z'));svg.append(label)});
+  chart.prepend(svg)
+}
+function showTip(e,r,v){tip.innerHTML=`<strong>${dateFmt.format(new Date(r.date+'T00:00:00Z'))}</strong><br>${mode==='total'?'Площа':'Зміна'}: ${v>0&&mode==='change'?'+':''}${num.format(v)} км²`;tip.style.display='block';positionTip(e)}
+function positionTip(e){const box=chart.getBoundingClientRect();tip.style.left=Math.min(e.clientX-box.left+12,box.width-tip.offsetWidth-5)+'px';tip.style.top=Math.max(4,e.clientY-box.top-tip.offsetHeight-12)+'px'}
+document.querySelectorAll('button[data-mode]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;document.querySelectorAll('button[data-mode]').forEach(b=>b.classList.toggle('active',b===button));render()}));render();
+</script></body></html>

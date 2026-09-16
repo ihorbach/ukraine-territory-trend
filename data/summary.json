@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-09-16T07:24:46.132290+00:00",
+  "requested_start_date": "2024-01-01",
+  "source_first_date": "2024-07-08",
+  "first_observation": "2024-07-08",
+  "latest_date": "2026-09-15",
+  "latest_occupied_km2": 117119.203,
+  "change_30_days_km2": 157.657,
+  "change_12_months_km2": 2284.3,
+  "monthly": [
+    {
+      "month": "2025-10",
+      "date": "2025-10-31",
+      "occupied_km2": 115248.128,
+      "monthly_change_km2": 254.863
+    },
+    {
+      "month": "2025-11",
+      "date": "2025-11-30",
+      "occupied_km2": 115741.476,
+      "monthly_change_km2": 493.348
+    },
+    {
+      "month": "2025-12",
+      "date": "2025-12-31",
+      "occupied_km2": 116203.009,
+      "monthly_change_km2": 461.533
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-31",
+      "occupied_km2": 116430.62,
+      "monthly_change_km2": 227.611
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-28",
+      "occupied_km2": 116585.588,
+      "monthly_change_km2": 154.968
+    },
+    {
+      "month": "2026-03",
+      "date": "2026-03-31",
+      "occupied_km2": 116743.207,
+      "monthly_change_km2": 157.619
+    },
+    {
+      "month": "2026-04",
+      "date": "2026-04-30",
+      "occupied_km2": 116883.044,
+      "monthly_change_km2": 139.837
+    },
+    {
+      "month": "2026-05",
+      "date": "2026-05-31",
+      "occupied_km2": 116893.336,
+      "monthly_change_km2": 10.292
+    },
+    {
+      "month": "2026-06",
+      "date": "2026-06-30",
+      "occupied_km2": 116977.818,
+      "monthly_change_km2": 84.482
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-31",
+      "occupied_km2": 117018.028,
+      "monthly_change_km2": 40.21
+    },
+    {
+      "month": "2026-08",
+      "date": "2026-08-31",
+      "occupied_km2": 117026.971,
+      "monthly_change_km2": 8.943
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-15",
+      "occupied_km2": 117119.203,
+      "monthly_change_km2": 92.232
+    }
+  ],
+  "method": "WGS84 geodesic area; last available observation in each calendar month",
+  "source": "cyterat/deepstate-map-data (derived from DeepState)"
+}
