@@ -14,7 +14,7 @@ import urllib.error
 import urllib.request
 from bisect import bisect_right
 from collections import OrderedDict
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -323,7 +323,8 @@ def main() -> None:
         updated, missing = refresh_daily(rows, today)
         print(f"Refreshed {updated} daily files; {missing} dates not published")
         write_history(rows)
-    summary = build_summary(rows, datetime.now(timezone.utc))
+    generated_at = datetime.combine(today, time.min, tzinfo=timezone.utc)
+    summary = build_summary(rows, generated_at)
     render_outputs(summary)
     print(f"Latest: {summary['latest_date']} — {summary['latest_occupied_km2']:.1f} km²")
 
