@@ -17,18 +17,18 @@
   <h1>Територія України під російським контролем</h1>
   <p>Останні 12 місяців. Для кожного місяця використано останнє доступне спостереження.</p>
   <section class="cards">
-    <div class="card"><div class="label">Останнє значення<br>2026-09-17</div><div class="value">117 119 км²</div></div>
-    <div class="card"><div class="label">Зміна за 30 днів</div><div class="value positive">+150 км²</div></div>
-    <div class="card"><div class="label">Зміна за 12 місяців</div><div class="value positive">+2 261 км²</div></div>
+    <div class="card"><div class="label">Останнє значення<br>2026-09-18</div><div class="value">117 123 км²</div></div>
+    <div class="card"><div class="label">Зміна за 30 днів</div><div class="value positive">+148 км²</div></div>
+    <div class="card"><div class="label">Зміна за 12 місяців</div><div class="value positive">+2 242 км²</div></div>
   </section>
   <section class="chart-card">
     <div class="toolbar"><button class="active" data-mode="total">Загальна площа</button><button data-mode="change">Зміна за місяць</button></div>
     <div id="chart"><div class="tip" id="tip"></div></div>
   </section>
-  <p class="notes">Джерело: <a href="https://github.com/cyterat/deepstate-map-data">cyterat/deepstate-map-data</a>, похідні дані DeepState. Площа розрахована геодезично на еліпсоїді WGS‑84. Історія джерела починається 08.07.2024; запитані раніші дати наразі відсутні. Оновлено: 2026-09-17.</p>
+  <p class="notes">Джерело: <a href="https://github.com/cyterat/deepstate-map-data">cyterat/deepstate-map-data</a>, похідні дані DeepState. Площа розрахована геодезично на еліпсоїді WGS‑84. Історія джерела починається 08.07.2024; запитані раніші дати наразі відсутні. Оновлено: 2026-09-18.</p>
 </main>
 <script>
-const rows=[{"month":"2025-10","date":"2025-10-31","occupied_km2":115248.128,"monthly_change_km2":254.863},{"month":"2025-11","date":"2025-11-30","occupied_km2":115741.476,"monthly_change_km2":493.348},{"month":"2025-12","date":"2025-12-31","occupied_km2":116203.009,"monthly_change_km2":461.533},{"month":"2026-01","date":"2026-01-31","occupied_km2":116430.62,"monthly_change_km2":227.611},{"month":"2026-02","date":"2026-02-28","occupied_km2":116585.588,"monthly_change_km2":154.968},{"month":"2026-03","date":"2026-03-31","occupied_km2":116743.207,"monthly_change_km2":157.619},{"month":"2026-04","date":"2026-04-30","occupied_km2":116883.044,"monthly_change_km2":139.837},{"month":"2026-05","date":"2026-05-31","occupied_km2":116893.336,"monthly_change_km2":10.292},{"month":"2026-06","date":"2026-06-30","occupied_km2":116977.818,"monthly_change_km2":84.482},{"month":"2026-07","date":"2026-07-31","occupied_km2":117018.028,"monthly_change_km2":40.21},{"month":"2026-08","date":"2026-08-31","occupied_km2":117026.971,"monthly_change_km2":8.943},{"month":"2026-09","date":"2026-09-17","occupied_km2":117119.203,"monthly_change_km2":92.232}];
+const rows=[{"month":"2025-10","date":"2025-10-31","occupied_km2":115248.128,"monthly_change_km2":254.863},{"month":"2025-11","date":"2025-11-30","occupied_km2":115741.476,"monthly_change_km2":493.348},{"month":"2025-12","date":"2025-12-31","occupied_km2":116203.009,"monthly_change_km2":461.533},{"month":"2026-01","date":"2026-01-31","occupied_km2":116430.62,"monthly_change_km2":227.611},{"month":"2026-02","date":"2026-02-28","occupied_km2":116585.588,"monthly_change_km2":154.968},{"month":"2026-03","date":"2026-03-31","occupied_km2":116743.207,"monthly_change_km2":157.619},{"month":"2026-04","date":"2026-04-30","occupied_km2":116883.044,"monthly_change_km2":139.837},{"month":"2026-05","date":"2026-05-31","occupied_km2":116893.336,"monthly_change_km2":10.292},{"month":"2026-06","date":"2026-06-30","occupied_km2":116977.818,"monthly_change_km2":84.482},{"month":"2026-07","date":"2026-07-31","occupied_km2":117018.028,"monthly_change_km2":40.21},{"month":"2026-08","date":"2026-08-31","occupied_km2":117026.971,"monthly_change_km2":8.943},{"month":"2026-09","date":"2026-09-18","occupied_km2":117123.247,"monthly_change_km2":96.276}];
 const chart=document.getElementById('chart'),tip=document.getElementById('tip');
 const monthFmt=new Intl.DateTimeFormat('uk-UA',{month:'short',year:'2-digit',timeZone:'UTC'});
 const dateFmt=new Intl.DateTimeFormat('uk-UA',{day:'2-digit',month:'long',year:'numeric',timeZone:'UTC'});
