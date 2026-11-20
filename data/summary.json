@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-19T00:00:00+00:00",
+  "generated_at": "2026-11-20T00:00:00+00:00",
   "requested_start_date": "2024-01-01",
   "source_first_date": "2024-07-08",
   "first_observation": "2024-07-08",
-  "latest_date": "2026-11-19",
+  "latest_date": "2026-11-20",
   "latest_occupied_km2": 117222.247,
-  "change_30_days_km2": 115.707,
-  "change_12_months_km2": 1630.149,
+  "change_30_days_km2": 110.235,
+  "change_12_months_km2": 1618.178,
   "monthly": [
     {
       "month": "2025-12",
@@ -76,7 +76,7 @@
     },
     {
       "month": "2026-11",
-      "date": "2026-11-19",
+      "date": "2026-11-20",
       "occupied_km2": 117222.247,
       "monthly_change_km2": 69.326
     }
