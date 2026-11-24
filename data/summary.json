@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-23T00:00:00+00:00",
+  "generated_at": "2026-11-24T00:00:00+00:00",
   "requested_start_date": "2024-01-01",
   "source_first_date": "2024-07-08",
   "first_observation": "2024-07-08",
-  "latest_date": "2026-11-23",
-  "latest_occupied_km2": 117231.083,
-  "change_30_days_km2": 108.991,
-  "change_12_months_km2": 1565.028,
+  "latest_date": "2026-11-24",
+  "latest_occupied_km2": 117236.601,
+  "change_30_days_km2": 110.578,
+  "change_12_months_km2": 1554.732,
   "monthly": [
     {
       "month": "2025-12",
@@ -76,9 +76,9 @@
     },
     {
       "month": "2026-11",
-      "date": "2026-11-23",
-      "occupied_km2": 117231.083,
-      "monthly_change_km2": 78.162
+      "date": "2026-11-24",
+      "occupied_km2": 117236.601,
+      "monthly_change_km2": 83.68
     }
   ],
   "method": "WGS84 geodesic area; last available observation in each calendar month",
